@@ -1,0 +1,52 @@
+﻿@using Common;
+
+@model IEnumerable<ApplicationUser> 
+
+<h1>Users List</h1>
+<br/>
+<table id="userTable" class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model)
+        {
+        <tr>
+            <td>
+                <div class="row">
+                    <div class="col-sm">
+                        <a>
+                            @user.UserName
+                        </a>
+                        <br />
+                        <small>
+                            @user.Id
+                        </small>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <a>@user.Email</a>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </button>
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        <a class="dropdown-item" style="margin-right:16px"; asp-controller="userroles" asp-action="Index" asp-route-userId="@user.Id">
+                            <i class="fas fa-wrench"></i>
+                            Manage Roles
+                        </a>
+                    </div>
+                </div>
+                
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

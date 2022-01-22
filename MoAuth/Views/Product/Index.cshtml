@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Common
+@inject IAuthorizationService AuthorizationService
+
+<h1>Product Management</h1>
+<br />
+
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Create)).Result.Succeeded)
+{
+    <button class="btn btn-primary">Create</button>
+}
+
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.View)).Result.Succeeded)
+{
+    <button class="btn btn-info">View</button>
+}
+
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Edit)).Result.Succeeded)
+{
+    <button class="btn btn-warning">Edit</button>
+}
+
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Delete)).Result.Succeeded)
+{
+    <button class="btn btn-danger">Delete</button>
+}
